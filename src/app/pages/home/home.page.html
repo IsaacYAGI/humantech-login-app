@@ -1,9 +1,24 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>home</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button routerLink="/tabs/login">
+        <ion-icon slot="icon-only" name="log-out-outline" color="danger"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title>Home</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Bienvenido</ion-card-title>
+      <!-- <ion-card-subtitle>Card Subtitle</ion-card-subtitle> -->
+    </ion-card-header>
+  
+    <ion-card-content>
+     <p>Sus datos son:</p>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

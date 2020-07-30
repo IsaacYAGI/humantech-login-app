@@ -51,7 +51,9 @@ export class LoginPage implements OnInit {
         this.form.reset();
         this.router.navigateByUrl("/home");
       } catch (error) {
-        console.error(error);
+        //console.error(error);
+        const alert = await this.utils.createAlert(error.message, "Error");
+        await alert.present();
       } finally{
         loading.dismiss();
       }

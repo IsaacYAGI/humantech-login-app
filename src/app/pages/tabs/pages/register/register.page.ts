@@ -45,6 +45,7 @@ export class RegisterPage implements OnInit {
     // console.log(this.form);
     if (this.form.valid){
       const loading = await this.utils.createLoading();
+      
       try {
         await loading.present();
         const body = {
@@ -57,6 +58,9 @@ export class RegisterPage implements OnInit {
         this.router.navigateByUrl("/home");
       } catch (error) {
         // console.error(error);
+        const alert = await this.utils.createAlert(error.message, "Error");
+        await alert.present();
+
       } finally{
         loading.dismiss();
       }

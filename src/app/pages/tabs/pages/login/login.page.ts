@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { UtilsService } from 'src/app/services/utils.service';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,8 @@ export class LoginPage implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private authService: AuthenticationService
+    private authService: AuthenticationService,
+    private utils: UtilsService
   ) {
     this.createForm();
    }
@@ -37,7 +39,9 @@ export class LoginPage implements OnInit {
   async saveForm(){
     // console.log(this.form);
     if (this.form.valid){
+      const loading = await this.utils.createLoading();
       try {
+        await loading.present();
         const body = {
           email: this.form.value.email,
           password: this.form.value.password
@@ -49,7 +53,7 @@ export class LoginPage implements OnInit {
       } catch (error) {
         console.error(error);
       } finally{
-
+        loading.dismiss();
       }
 
       

@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators, FormArray  } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { ValidationsService } from 'src/app/services/validations.service';
+import { UtilsService } from 'src/app/services/utils.service';
 
 @Component({
   selector: 'app-register',
@@ -17,7 +18,8 @@ export class RegisterPage implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private authService: AuthenticationService,
-    private validators: ValidationsService
+    private validators: ValidationsService,
+    private utils: UtilsService
   ) {
     this.createForm();
    }
@@ -42,7 +44,9 @@ export class RegisterPage implements OnInit {
   async saveForm(){
     // console.log(this.form);
     if (this.form.valid){
+      const loading = await this.utils.createLoading();
       try {
+        await loading.present();
         const body = {
           email: this.form.value.email,
           password: this.form.value.password1
@@ -54,7 +58,7 @@ export class RegisterPage implements OnInit {
       } catch (error) {
         // console.error(error);
       } finally{
-
+        loading.dismiss();
       }
 
       

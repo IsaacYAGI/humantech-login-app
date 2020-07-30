@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray  } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { ValidationsService } from 'src/app/services/validations.service';
 
 @Component({
   selector: 'app-register',
@@ -15,7 +16,8 @@ export class RegisterPage implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private authService: AuthenticationService
+    private authService: AuthenticationService,
+    private validators: ValidationsService
   ) {
     this.createForm();
    }
@@ -31,8 +33,9 @@ export class RegisterPage implements OnInit {
       password1:['123456', [Validators.required, Validators.minLength(6)]],
       password2:['123456', [Validators.required, Validators.minLength(6)]],
       
-    },{
-      // validators: [this.validadores.passwordsIguales('password1','password2')]
+    },
+    {
+      validators: [this.validators.samePasswords('password1','password2')]
     });
   }
 

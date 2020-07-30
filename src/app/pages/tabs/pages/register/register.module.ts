@@ -8,6 +8,8 @@ import { RegisterPageRoutingModule } from './register-routing.module';
 
 import { RegisterPage } from './register.page';
 
+import { FormInputErrorComponentModule } from 'src/app/components/form-input-error/form-input-error.module';
+
 
 @NgModule({
   imports: [
@@ -15,7 +17,8 @@ import { RegisterPage } from './register.page';
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
-    RegisterPageRoutingModule
+    RegisterPageRoutingModule,
+    FormInputErrorComponentModule
   ],
   declarations: [RegisterPage]
 })

@@ -19,9 +19,11 @@ export class AuthenticationService {
   }
 
   logoutUser() {
-    console.log("Current user:", this.afAuth.currentUser);
+    // console.log("Current user:",  this.afAuth.currentUser);
       if (this.afAuth.currentUser) {
-        return this.afAuth.signOut()
+        return this.afAuth.signOut();
+      }else{
+        return Promise.resolve();
       }
   }
 

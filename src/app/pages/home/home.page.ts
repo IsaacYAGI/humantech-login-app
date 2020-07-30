@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -10,11 +11,21 @@ export class HomePage implements OnInit {
 
   email: string = "";
   constructor(
-    public auth: AuthenticationService
+    public auth: AuthenticationService,
+    private router: Router
   ) {
-    auth.userDetails().subscribe(val => this.email = val.email);
+    auth.userDetails().subscribe(val => this.email = val?.email);
    }
 
   ngOnInit() {
+  }
+
+  async logout(){
+    try {
+      await this.auth.logoutUser();
+      this.router.navigateByUrl("/tabs/login");
+    } catch (error) {
+      console.error(error);
+    }
   }
 }

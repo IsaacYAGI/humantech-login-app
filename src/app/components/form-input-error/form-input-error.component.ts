@@ -21,14 +21,16 @@ export class FormInputErrorComponent implements OnInit {
         const errors = this.form.controls[this.formInput].errors;
         for (const errorName in errors) {
             if (errors[errorName]) {
-              console.log(errorName)
                 switch (errorName) {
                     case 'required':
-                        return `This field is required`;
+                        if (this.form.touched) return `This field is required`;
+                        return null;
                     case 'minlength':
                         return `Must be at least ${this.form.controls[this.formInput].errors.minlength.requiredLength} characters long.`;
                     case 'pattern':
                         return 'Please enter a valid email address';
+                    case 'notEqual':
+                        return 'The passwords must match';
                     default:
                         return this.form.controls[this.formInput].errors[errorName];
                 }

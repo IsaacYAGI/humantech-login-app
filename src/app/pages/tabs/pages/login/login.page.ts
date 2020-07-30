@@ -26,8 +26,8 @@ export class LoginPage implements OnInit {
   createForm(){
     this.form = this.formBuilder.group({
       //valor por defecto // sync validator // async validator
-      email:['test@test.com', [Validators.required, Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$")]],
-      password:['123456', [Validators.required, Validators.minLength(6)]],
+      email:['', [Validators.required, Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$")]],
+      password:['', [Validators.required, Validators.minLength(6)]],
       
     },{
       // validators: [this.validadores.passwordsIguales('password1','password2')]
@@ -35,7 +35,7 @@ export class LoginPage implements OnInit {
   }
 
   async saveForm(){
-    console.log(this.form);
+    // console.log(this.form);
     if (this.form.valid){
       try {
         const body = {
@@ -43,7 +43,8 @@ export class LoginPage implements OnInit {
           password: this.form.value.password
         }
         const result = await this.authService.loginUser(body);
-        console.log(result);
+        // console.log(result);
+        this.form.reset();
         this.router.navigateByUrl("/home");
       } catch (error) {
         console.error(error);

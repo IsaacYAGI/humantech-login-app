@@ -5,22 +5,20 @@
 </ion-header>
 
 <ion-content>
-  <ion-item>
-    <ion-label position="floating">Full Name</ion-label>
-    <ion-input placeholder="Enter Full Name"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label position="floating">Email</ion-label>
-    <ion-input placeholder="Enter Email"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label position="floating">Password</ion-label>
-    <ion-input placeholder="Enter Password"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label position="floating">Repeat Password</ion-label>
-    <ion-input placeholder="Repeat Password"></ion-input>
-  </ion-item>
-  <br>
-  <ion-button color="primary" expand="block" routerLink="/home">Register</ion-button>
+  <form [formGroup]="form" (ngSubmit)="saveForm()">
+    <ion-item>
+      <ion-label position="floating">Email</ion-label>
+      <ion-input placeholder="Enter Email" formControlName="email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Password</ion-label>
+      <ion-input placeholder="Enter Password" type="password" formControlName="password1"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Repeat Password</ion-label>
+      <ion-input placeholder="Repeat Password" type="password" formControlName="password2"></ion-input>
+    </ion-item>
+    <br>
+    <ion-button type="submit" color="primary" expand="block">Register</ion-button>
+  </form>
 </ion-content>

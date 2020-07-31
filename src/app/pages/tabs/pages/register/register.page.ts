@@ -29,12 +29,9 @@ export class RegisterPage implements OnInit {
 
   createForm(){
     this.form = this.formBuilder.group({
-      //valor por defecto // sync validator // async validator
-      // fullName:['', [Validators.required, Validators.minLength(5)]],
       email:['', [Validators.required, Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$")]],
       password1:['', [Validators.required, Validators.minLength(6)]],
       password2:['', [Validators.required, Validators.minLength(6)]],
-      
     },
     {
       validators: [this.validators.samePasswords('password1','password2')]
@@ -53,20 +50,15 @@ export class RegisterPage implements OnInit {
           password: this.form.value.password1
         }
         const result = await this.authService.registerUser(body);
-        // console.log(result);
         this.form.reset();
         this.router.navigateByUrl("/home");
       } catch (error) {
-        // console.error(error);
         const alert = await this.utils.createAlert(error.message, "Error");
         await alert.present();
 
       } finally{
         loading.dismiss();
       }
-
-      
-      
     }
     return;
   }

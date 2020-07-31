@@ -27,17 +27,12 @@ export class LoginPage implements OnInit {
 
   createForm(){
     this.form = this.formBuilder.group({
-      //valor por defecto // sync validator // async validator
       email:['', [Validators.required, Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$")]],
       password:['', [Validators.required, Validators.minLength(6)]],
-      
-    },{
-      // validators: [this.validadores.passwordsIguales('password1','password2')]
     });
   }
 
   async saveForm(){
-    // console.log(this.form);
     if (this.form.valid){
       const loading = await this.utils.createLoading();
       try {
@@ -47,19 +42,14 @@ export class LoginPage implements OnInit {
           password: this.form.value.password
         }
         const result = await this.authService.loginUser(body);
-        // console.log(result);
         this.form.reset();
         this.router.navigateByUrl("/home");
       } catch (error) {
-        //console.error(error);
         const alert = await this.utils.createAlert(error.message, "Error");
         await alert.present();
       } finally{
         loading.dismiss();
       }
-
-      
-      
     }
     return;
   }

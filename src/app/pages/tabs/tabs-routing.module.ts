@@ -15,12 +15,13 @@ const routes: Routes = [
         path: 'register',
         loadChildren: () => import('./pages/register/register.module').then(m => m.RegisterPageModule)
       },
-      // {
-      //   path: 'tab3',
-      //   loadChildren: () => import('./pages/tab3/tab3.module').then(m => m.Tab3PageModule)
-      // },
       {
         path: '',
+        redirectTo: '/tabs/login',
+        pathMatch: 'full'
+      },
+      {
+        path: '**',
         redirectTo: '/tabs/login',
         pathMatch: 'full'
       }
@@ -30,14 +31,6 @@ const routes: Routes = [
     path: '',
     redirectTo: '/tabs/login',
     pathMatch: 'full'
-  },
-  {
-    path: 'login',
-    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
-  },
-  {
-    path: 'register',
-    loadChildren: () => import('./pages/register/register.module').then( m => m.RegisterPageModule)
   }
 ];
 

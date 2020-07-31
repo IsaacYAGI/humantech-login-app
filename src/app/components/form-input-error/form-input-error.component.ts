@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { error } from 'protractor';
 
 @Component({
   selector: 'app-form-input-error',

@@ -50,9 +50,6 @@ export class LoginPage implements OnInit {
       } finally{
         loading.dismiss();
       }
-
-      
-      
     }
     return;
   }

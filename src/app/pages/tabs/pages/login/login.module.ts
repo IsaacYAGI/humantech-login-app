@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { LoginPageRoutingModule } from './login-routing.module';
 
 import { LoginPage } from './login.page';
+
 import { FormInputErrorComponentModule } from 'src/app/components/form-input-error/form-input-error.module';
 
 @NgModule({

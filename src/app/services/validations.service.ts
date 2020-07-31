@@ -1,9 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-
-interface ErrorValidate{
-  [s:string]: boolean
-}
+import { FormGroup } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
